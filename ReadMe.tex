@@ -1,0 +1,127 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{amsmath, amsfonts}
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Conjugacy tables with fixed margins}
+\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\section{Background}
+
+Let $\lambda = (\lambda_1, \ldots, \lambda_m)$  and $\mu = (\mu_1, \ldots, \mu_n)$ be compositions of a natural number $d$. Let $M$ be an $m \times n$ matrix with entries in $\mathbb{N}$. Say that the pair $(\lambda, \mu)$ is the {\em margin} of $M$ if the sum of entries in the $i$-th row of $M$ is $\lambda_i$, and the sum of entries in the $j$-th column of $M$ is $\mu_j$.
+Write $A^{\lambda}_{\mu}$ for the set of such matrices. 
+
+For example:
+\begin{align*}
+A^{(3,3)}_{(2,2,2)} 
+= \{
+&
+\begin{pmatrix}
+    2 & 1 & 0 \\
+    0 & 1 & 2\\
+  \end{pmatrix}
+,
+\begin{pmatrix}
+    2 & 0 & 1 \\
+    0 & 2 & 1\\
+  \end{pmatrix}
+,
+\begin{pmatrix}
+    1 & 2 & 0 \\
+    1 & 0 & 2\\
+  \end{pmatrix}
+,
+\begin{pmatrix}
+    1 & 1 & 1 \\
+    1 & 1 & 1\\
+  \end{pmatrix}
+, \\
+& 
+\begin{pmatrix}
+    1 & 0 & 2 \\
+    1 & 2 & 0\\
+  \end{pmatrix}
+,
+\begin{pmatrix}
+    0 & 2 & 1 \\
+    2 & 0 & 1\\
+  \end{pmatrix}
+,
+\begin{pmatrix}
+    0 & 1 & 2 \\
+    2 & 1 & 0\\
+  \end{pmatrix}
+\}.
+\end{align*}
+
+A summary of results and applications of such matrices can be found in \cite{DG95}. In statistical applications these matrices arise as conjugacy tables with fixed margins (alternatively called fixed-margin matrices). Such matrices also play a role in group theory and representation theory. For instance $A^{\lambda}_{\mu}$ is in bijection with double cosets of the symmetric group $\mathfrak{S}_d$ by Young subgroups $\mathfrak{S}_{\lambda}$ and $\mathfrak{S}_{\mu}$. These results and more are summarised in \cite{DG95}.
+
+\section{Fixed-Margin matrix calculator (how to use)}
+
+This github repo contains a single python script to calculate the matrices with margin $(\lambda, \mu)$ for a given $\lambda$, $\mu$. After running the script you will be prompted to enter the row sequence $\lambda$, then the column sequence $\mu$. Enter these as a list of integers separated by commas. If the sum of entries in $\lambda$ and $\mu$ are equal, the console will return the list of all matrices with margin $(\lambda, \mu)$ and tell you how many such matrices there are. Otherwise an error will be raised and you will be prompted to enter the input sequences again. Type $q$ to quit.
+
+\begin{thebibliography}{MOY98}
+
+\bibitem[DG95]{DG95}
+Persi Diaconis, Anil Gangolli.
+\newblock Rectangular arrays with fixed margins,
+\newblock in: {\em Discrete Probability and Algorithms},
+\newblock Springer-Verlag, Berlin/New York, 15-41, 1995 
+
+\end{thebibliography}
+\end{document}
